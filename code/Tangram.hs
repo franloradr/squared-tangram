@@ -96,26 +96,26 @@ pintaPieza pieza recuadrosPieza piezasRestantes=
    
 ajustaEnumeracionPiezaColocada :: Pieza -> Casilla -> [Pieza] -> Picture
 ajustaEnumeracionPiezaColocada Verde (x, y) piezasRestantes
-   |Verde `elem` piezasRestantes = (translated (x+1.5) (y+0.5) (coloured black (text "1")))
-   |otherwise = (translated (x+1.5) (y+0.5) (coloured white (text "X"))) & (translated (x+1.5) (y+0.5) (coloured black (text "1")))
+   |Verde `elem` piezasRestantes = (translated (x+1.5) (y+0.5) (coloured black (lettering "1")))
+   |otherwise = (translated (x+1.5) (y+0.5) (coloured white (lettering "X"))) & (translated (x+1.5) (y+0.5) (coloured black (lettering "1")))
 ajustaEnumeracionPiezaColocada Azul (x, y) piezasRestantes 
-   |Azul `elem` piezasRestantes = (translated (x+1.5) (y+2.0) (coloured black (text "2")))
-   |otherwise = (translated (x+1.5) (y+2.0) (coloured white (text "X"))) & (translated (x+1.5) (y+2.0) (coloured black (text "2")))
+   |Azul `elem` piezasRestantes = (translated (x+1.5) (y+2.0) (coloured black (lettering "2")))
+   |otherwise = (translated (x+1.5) (y+2.0) (coloured white (lettering "X"))) & (translated (x+1.5) (y+2.0) (coloured black (lettering "2")))
 ajustaEnumeracionPiezaColocada Roja (x, y) piezasRestantes
-   |Roja `elem` piezasRestantes = (translated (x+1.0) (y+3.5) (coloured black (text "3")))
-   |otherwise = (translated (x+1.0) (y+3.5) (coloured white (text "X"))) & (translated (x+1.0) (y+3.5) (coloured black (text "2")))
+   |Roja `elem` piezasRestantes = (translated (x+1.0) (y+3.5) (coloured black (lettering "3")))
+   |otherwise = (translated (x+1.0) (y+3.5) (coloured white (lettering "X"))) & (translated (x+1.0) (y+3.5) (coloured black (lettering "2")))
 ajustaEnumeracionPiezaColocada Naranja (x, y) piezasRestantes 
-   |Naranja `elem` piezasRestantes = (translated (x+3.0) (y+1.0) (coloured black (text "4")))
-   |otherwise = (translated (x+3.0) (y+1.0) (coloured white (text "X"))) & (translated (x+3.0) (y+1.0) (coloured black (text "4")))
+   |Naranja `elem` piezasRestantes = (translated (x+3.0) (y+1.0) (coloured black (lettering "4")))
+   |otherwise = (translated (x+3.0) (y+1.0) (coloured white (lettering "X"))) & (translated (x+3.0) (y+1.0) (coloured black (lettering "4")))
 ajustaEnumeracionPiezaColocada Rosa (x, y) piezasRestantes  
-   |Rosa `elem` piezasRestantes = (translated (x+1.0) (y+3.0) (coloured black (text "5")))
-   |otherwise = (translated (x+1.0) (y+3.0) (coloured white (text "X"))) & (translated (x+1.0) (y+3.0) (coloured black (text "5")))
+   |Rosa `elem` piezasRestantes = (translated (x+1.0) (y+3.0) (coloured black (lettering "5")))
+   |otherwise = (translated (x+1.0) (y+3.0) (coloured white (lettering "X"))) & (translated (x+1.0) (y+3.0) (coloured black (lettering "5")))
 ajustaEnumeracionPiezaColocada Amarilla (x, y) piezasRestantes
-   |Amarilla `elem` piezasRestantes = (translated (x+1.0) (y+0.5) (coloured black (text "6")))
-   |otherwise = (translated (x+1.0) (y+0.5) (coloured white (text "X"))) & (translated (x+1.0) (y+0.5) (coloured black (text "6")))
+   |Amarilla `elem` piezasRestantes = (translated (x+1.0) (y+0.5) (coloured black (lettering "6")))
+   |otherwise = (translated (x+1.0) (y+0.5) (coloured white (lettering "X"))) & (translated (x+1.0) (y+0.5) (coloured black (lettering "6")))
 
 pintaAsteriscos :: [Casilla] -> Picture
-pintaAsteriscos iniciosPieza = pictures[translated x (y-0.15) (coloured white (text "*"))|(x, y)<-iniciosPieza]
+pintaAsteriscos iniciosPieza = pictures[translated x (y-0.15) (coloured white (lettering "*"))|(x, y)<-iniciosPieza]
 
 traduceEventoAPieza :: Event -> Pieza
 traduceEventoAPieza (KeyPress "1") = Verde 
@@ -149,7 +149,7 @@ pintaMundo (piezasRestantes, piezaElegida, recuadrosLibres, verde, azul, roja, n
    -- (coordinatePlane)
 
 pintaVictoria :: [Pieza] -> Picture
-pintaVictoria [] = scaled 2.0 2.0 (translated 0.0 0.0 (coloured black (text "Victoria")))
+pintaVictoria [] = scaled 2.0 2.0 (translated 0.0 0.0 (coloured black (lettering "Victoria")))
 pintaVictoria _ = blank
 
 pintaPiezasDisponibles :: [(Pieza, [Casilla])] -> Picture
@@ -157,39 +157,39 @@ pintaPiezasDisponibles ls = pictures[if length(coordPieza)==0 then (dibujaPiezaD
 
 dibujaPiezaDisponible :: Pieza -> Picture
 dibujaPiezaDisponible Verde = 
-   (translated (7.5) (-0.5) (coloured black (text "1"))) & 
+   (translated (7.5) (-0.5) (coloured black (lettering "1"))) & 
    pictures[translated ((6.0)+k) ((-1.0)+z) (coloured green (solidRectangle 1 1))|(k, z)<-(dimensionPieza Verde)]
 dibujaPiezaDisponible Azul = 
-   (translated (7.5) (-7.0) (coloured black (text "2"))) & 
+   (translated (7.5) (-7.0) (coloured black (lettering "2"))) & 
    pictures[translated ((6.0)+k) ((-9.0)+z) (coloured blue (solidRectangle 1 1))|(k, z)<-(dimensionPieza Azul)]
 dibujaPiezaDisponible Roja = 
-   (translated (-8.0) (-5.5) (coloured black (text "3"))) & 
+   (translated (-8.0) (-5.5) (coloured black (lettering "3"))) & 
    pictures[translated ((-9.0)+k) ((-9.0)+z) (coloured red (solidRectangle 1 1))|(k, z)<-(dimensionPieza Roja)]
 dibujaPiezaDisponible Naranja = 
-   (translated (-5.0) (7.0) (coloured black (text "4"))) & 
+   (translated (-5.0) (7.0) (coloured black (lettering "4"))) & 
    pictures[translated ((-8.0)+k) ((6.0)+z) (coloured orange (solidRectangle 1 1))|(k, z)<-(dimensionPieza Naranja)]
 dibujaPiezaDisponible Rosa = 
-   (translated (7.0) (5.0) (coloured black (text "5"))) & 
+   (translated (7.0) (5.0) (coloured black (lettering "5"))) & 
    pictures[translated ((6.0)+k) ((2.0)+z) (coloured pink (solidRectangle 1 1))|(k, z)<-(dimensionPieza Rosa)]
 dibujaPiezaDisponible Amarilla = 
-   (translated (-8.0) (1.5) (coloured black (text "6"))) & 
+   (translated (-8.0) (1.5) (coloured black (lettering "6"))) & 
    pictures[translated ((-9.0)+k) ((1.0)+z) (coloured yellow (solidRectangle 1 1))|(k, z)<-(dimensionPieza Amarilla)]
 
 indicaPiezaSeleccionada :: Pieza -> Picture
 indicaPiezaSeleccionada Ninguna =
-   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (text "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured black (text "Ninguna")))
+   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (lettering "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured black (lettering "Ninguna")))
 indicaPiezaSeleccionada Verde = 
-   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (text "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured green (text "Verde (1)")))
+   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (lettering "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured green (lettering "Verde (1)")))
 indicaPiezaSeleccionada Azul =
-   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (text "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured blue (text "Azul (2)")))
+   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (lettering "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured blue (lettering "Azul (2)")))
 indicaPiezaSeleccionada Roja =
-   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (text "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured red (text "Roja (3)")))
+   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (lettering "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured red (lettering "Roja (3)")))
 indicaPiezaSeleccionada Naranja =
-   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (text "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured orange (text "Naranja (4)")))
+   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (lettering "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured orange (lettering "Naranja (4)")))
 indicaPiezaSeleccionada Rosa =
-   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (text "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured pink (text "Rosa (5)")))
+   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (lettering "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured pink (lettering "Rosa (5)")))
 indicaPiezaSeleccionada Amarilla =
-   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (text "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured yellow (text "Amarilla (6)")))
+   scaled 0.85 0.85 (translated (0.0) (-7.0) (coloured black (lettering "La pieza seleccionada es: ")) & translated (0.0) (-8.0) (coloured yellow (lettering "Amarilla (6)")))
 
 
 estadoInicial1 :: Mundo
@@ -227,7 +227,7 @@ resuelveEvento evento estado@(piezasRestantes, Ninguna, recuadrosLibres, verde, 
    |otherwise = (piezasRestantes, (traduceEvento), recuadrosLibres, verde, azul, roja, naranja, rosa, amarilla)
    where traduceEvento = (traduceEventoAPieza evento)
    
-resuelveEvento (MousePress LeftButton (x, y)) estado@(piezasRestantes, piezaElegida, recuadrosLibres, verde, azul, roja, naranja, rosa, amarilla)
+resuelveEvento (PointerPress (x, y)) estado@(piezasRestantes, piezaElegida, recuadrosLibres, verde, azul, roja, naranja, rosa, amarilla)
    |not(tC `elem` (calculaOpciones recuadrosLibres piezaElegida)) = estado
    |piezaElegida == Verde = (piezasRestantes, piezaElegida, recuadrosLibres, cP, azul, roja, naranja, rosa, amarilla)
    |piezaElegida == Azul = (piezasRestantes, piezaElegida, recuadrosLibres, verde, cP, roja, naranja, rosa, amarilla)
@@ -355,7 +355,6 @@ quitaRecuadrosLibresAux [(-4.5,-4.5),(-4.5,-3.5)] (-4.5,-4.5)
 --}
    
 juego :: IO()
-juego = interactionOf (estadoInicial1) (\_ estado -> estado)
-                          resuelveEvento pintaMundo
+juego = activityOf (estadoInicial1) resuelveEvento pintaMundo
 main :: IO()
 main = juego
